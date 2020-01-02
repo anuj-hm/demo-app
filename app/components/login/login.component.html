@@ -1,0 +1,34 @@
+
+<div *ngIf="showLinks">
+   <table>
+   <tr>
+      <th><a href="/topic">Topic</a></th>
+      <th *ngIf="userData.role==='admin'"><a href="/user">User</a></th>
+      <th><input type="button" value="Logout" (click)="logout()" class="btn btn-warning" /></th>
+   </tr>
+   </table>
+   <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!showLinks">
+   <h2>Login Component</h2>
+
+   <p><b>Please enter your userId and password !</b></p>
+   <table>
+      <tr>
+         <td>UserId : </td>
+         <td><input type="text" [(ngModel)]="loginData.userId"/></td>
+      </tr>
+      <tr>
+         <td>Password : </td>
+         <td><input type="password" [(ngModel)]="loginData.password"/></td>
+      </tr>
+      <tr>
+         <td></td>
+         <td>
+            <input type="button" value="Save" (click)="getLogin()" class="btn btn-success" /> &nbsp;&nbsp;
+            <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+         </td>
+      </tr>
+   </table>
+</div>

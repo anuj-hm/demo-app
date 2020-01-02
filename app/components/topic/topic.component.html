@@ -1,0 +1,38 @@
+<h2>Topic Component</h2>
+<input type="button" value="Add Topic" class="btn btn-default" (click)="addNewTopic()" /><br /><br />
+
+<div>	
+	<b>Topic Name</b> : <input type="text" [(ngModel)]="searchText"/> &nbsp;
+	<input type="button" value="Search" (click)="searchTopic()" class="btn btn-success" />
+</div>  <br />
+<div class="topics" *ngIf="!showTopics1">
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+	<th *ngIf="userData.role==='admin'">Action D</th>
+  <th *ngIf="userData.role==='admin'">Action U</th>
+  <th>Action S</th>
+  </tr>
+  <tr *ngFor="let topic of topics">
+    <td>{{topic.id}}</td>
+    <td>{{topic.name}}</td>
+    <td *ngIf="userData.role==='admin'"><input type="button" value="Delete" (click)="deleteTopic(topic.id)" class="btn btn-success" /></td>
+	  <td *ngIf="userData.role==='admin'"><input type="button" value="Update" (click)="updateTopic(topic)" class="btn btn-success" /></td>
+    <td><input type="button" value="Subscribe" (click)="subscribeTopic(topic)" class="btn btn-success" /></td>
+  </tr>
+</table>
+</div>
+
+<div *ngIf="showAddTopicForm">
+    <td>
+        <b>Topic Name </b> : <input type="text" [(ngModel)]="topicData.name"/>
+    </td>
+
+    <td>
+        <input type="button" value="Save" (click)="saveTopic()" class="btn btn-success" />
+    </td>
+    <td>
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </td>
+</div>

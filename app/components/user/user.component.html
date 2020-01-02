@@ -1,0 +1,79 @@
+ <h2>User Component</h2>
+ <input type="button" value="Add User" (click)="getAddUserForm()" /> <br /><br />
+<div class="users" *ngIf="showUsers">
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>UserId</th>
+    <th>email</th>
+    <th>role</th>
+    <th>Delete</th>
+    <th>Update</th>
+    <th>Topics</th>
+  </tr>
+
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td>
+    <td>{{user.userId}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.role}}</td>
+    <td><input type="button" value="Delete" (click)="deleteUser(user.id)" class="btn btn-success" /></td>
+	  <td><input type="button" value="Update" (click)="updateUser(user)" class="btn btn-success" /></td>
+    <td *ngFor="let topic of user.topics">
+      {{topic.name}},
+    </td>
+  </tr>
+</table>
+</div>
+
+<div *ngIf="showAddUserForm">
+  <p><b>Please enter user details below.</b></p>
+   <table>
+      <tr>
+         <td>UserId : </td>
+         <td>
+            <input type="text" [(ngModel)]="userData.userId"/>
+         </td>
+      </tr>
+      <tr>
+         <td>Name : </td>
+         <td>
+            <input type="text" [(ngModel)]="userData.name"/>
+         </td>
+      </tr>
+      <tr>
+        <td>Password : </td>
+        <td>
+           <input type="text" [(ngModel)]="userData.password"/>
+        </td>
+     </tr>
+     <tr>
+      <td>Email : </td>
+      <td>
+         <input type="text" [(ngModel)]="userData.email"/>
+      </td>
+   </tr>
+   <tr>
+    <td>Role : </td>
+    <td>
+       <input type="text" [(ngModel)]="userData.role"/>
+    </td>
+  </tr>
+  <tr *ngIf="userData.role==='admin'">
+    <td>Role Secret Key: </td>
+    <td>
+      <input type="text" [(ngModel)]="userData.roleSecretKey"/>
+    </td>
+  </tr>
+      <tr>
+         <td>
+         </td>
+         <td>
+            <input type="button" value="Save" (click)="saveUser()" class="btn btn-success" /> &nbsp;&nbsp;
+            <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+         </td>
+   </tr>
+   </table>
+</div>
+
+
